@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ data.name }} - Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="brand"><i class="fa-solid fa-butterfly"></i> Your Portfolio ♡</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+    <a href="{{ url_for('form') }}" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Edit Profile</a>
+  </nav>
+
+  <section class="hero-container" id="home">
+    <div>
+      <span class="greeting">Hi, I'm ♡</span>
+      <h1 class="main-title">{{ data.name }} ♡</h1>
+      <h2 class="sub-title">{{ data.role }}</h2>
+      <p class="hero-bio">{{ data.bio }}</p>
+    </div>
+    <div>
+      <div class="photo-blob-wrapper">
+        <div class="purple-blob"></div>
+        <img src="{{ data.image_url }}" class="profile-img" alt="Profile Photo">
+      </div>
+    </div>
+  </section>
+
+  <section class="grid-cards-container">
+    <div class="info-card" id="about">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-regular fa-user"></i></div>
+        <h3 class="card-title">About Me</h3>
+      </div>
+      <p class="card-text">{{ data.about_text }}</p>
+    </div>
+
+    <div class="info-card" id="skills">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+        <h3 class="card-title">Skills</h3>
+      </div>
+      <div class="skills-pills">
+        {% for skill in data.skills %}
+          <span class="pill">{{ skill.strip() }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="info-card" id="projects">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-regular fa-folder"></i></div>
+        <h3 class="card-title">Featured Project</h3>
+      </div>
+      <div class="card-text">
+        <h4>{{ data.project_title }}</h4>
+        <p>{{ data.project_desc }}</p>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="card-header">
+        <div class="card-icon"><i class="fa-regular fa-envelope"></i></div>
+        <h3 class="card-title">Contact Details</h3>
+      </div>
+      <p class="card-text">
+        <strong>Email:</strong> {{ data.email }}<br>
+        <strong>Phone:</strong> {{ data.phone }}<br>
+        <strong>Location:</strong> {{ data.location }}
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer-tagline">
+    SMALL STEPS &nbsp; ♡ &nbsp; BIG DREAMS
+  </footer>
+
+</body>
+</html>

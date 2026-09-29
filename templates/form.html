@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile - Your Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="brand">Your Portfolio ♡</div>
+    <a href="{{ url_for('index') }}" class="btn btn-outline">Back to Home</a>
+  </nav>
+
+  <div class="form-container">
+    <h2>Edit Portfolio Details</h2>
+    <p class="form-subtext">Fill in your details below to dynamically update your website.</p>
+    
+    <form action="{{ url_for('form') }}" method="POST">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="e.g. Sneha" value="{{ data.name if data and data.name else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>Role & Qualifications</label>
+        <input type="text" name="role" placeholder="e.g. Web Developer | Designer" value="{{ data.role if data and data.role else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>Profile Image URL</label>
+        <input type="url" name="image_url" placeholder="https://..." value="{{ data.image_url if data and data.image_url else '' }}" />
+      </div>
+
+      <div class="form-group">
+        <label>Hero Intro Bio</label>
+        <textarea name="bio" rows="3" placeholder="Passionate about web development and building user-friendly applications..." required>{{ data.bio if data and data.bio else '' }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>About Me Details</label>
+        <textarea name="about_text" rows="3" placeholder="Background, goals, and academic projects..." required>{{ data.about_text if data and data.about_text else '' }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Skills (Comma separated)</label>
+        <input type="text" name="skills" placeholder="HTML, CSS, JavaScript, Python, MySQL" value="{{ data.skills if data and data.skills else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>Featured Project Title</label>
+        <input type="text" name="project_title" placeholder="e.g. Personal Portfolio Website" value="{{ data.project_title if data and data.project_title else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>Project Technologies Used</label>
+        <input type="text" name="project_desc" placeholder="e.g. Flask • SQLite • HTML • CSS" value="{{ data.project_desc if data and data.project_desc else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="e.g. sneha@example.com" value="{{ data.email if data and data.email else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="e.g. +91 98765 43210" value="{{ data.phone if data and data.phone else '' }}" required />
+      </div>
+
+      <div class="form-group">
+        <label>Location / City</label>
+        <input type="text" name="location" placeholder="e.g. Bangalore, India" value="{{ data.location if data and data.location else '' }}" required />
+      </div>
+
+      <button type="submit" class="btn form-submit-btn">
+        Generate Portfolio &rarr;
+      </button>
+    </form>
+  </div>
+
+</body>
+</html>
